@@ -3,15 +3,14 @@ importScripts("./sw.js");
 
 var cacheStorageKey = 'minimal-pwa-1'
 var cacheList = [
-	'/',
 	'index.html',
-	'main.css',
-	'youhun.jpg'
+	'/css/main.css',
+	'/img/demo.jpg'
 ]
 self.addEventListener('install', e => {
 	e.waitUntil(
 		caches.open(cacheStorageKey)
-		.then(cache => cache.addAll(cacheList))
+		.then(cache => cache.addAll(cacheList)) // 如果所有的文件都成功缓存了，便会安装完成。如果任何文件下载失败了，那么安装过程也会随之失败。
 		.then(() => self.skipWaiting())
 	)
 })
